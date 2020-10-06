@@ -34,4 +34,4 @@ $ mvn install
 ```
 $ mvn exec:java -Dexec.mainClass="com.ufu.ProjetoLMD.ProjetoLMD"
 ```
-Ou execute o arquivo ``.jar`` disponivel.
+Ou execute o arquivo ``grafo.jar`` disponivel.
