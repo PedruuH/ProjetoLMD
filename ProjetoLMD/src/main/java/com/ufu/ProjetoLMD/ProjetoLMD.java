@@ -25,8 +25,10 @@ public class ProjetoLMD implements ViewerListener {
 	}
 	
 	public ProjetoLMD() {			
+		URL styleURL = getClass().getResource("style.css");
+		
 		System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
-		graph.setAttribute("ui.stylesheet", "url('file:///C:\\Users\\pedro\\Desktop\\ProjetoLMD\\src\\main\\java\\com\\ufu\\ProjetoLMD\\style.css')");
+		graph.setAttribute("ui.stylesheet", "url('" + styleURL + "')");
 		graph.addAttribute("ui.quality");
 		graph.addAttribute("ui.antialias");             
 
@@ -38,6 +40,7 @@ public class ProjetoLMD implements ViewerListener {
 		viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.EXIT);
 
 		preBuiltGraph();
+//		randomGraph(4, 15);
 
 		for (Node node : graph) {
 			node.addAttribute("ui.label", node.getId());
@@ -66,7 +69,7 @@ public class ProjetoLMD implements ViewerListener {
 		Object[] options = { "Busca em Largura", "Busca em Profundidade", "Cancelar" };
 
 		JPanel panel = new JPanel();
-		panel.add(new JLabel("Escolha uma das opções:"));
+		panel.add(new JLabel("Escolha o tipo de busca desejada"));
 
 		int result = JOptionPane.showOptionDialog(
 				null, panel, "Busca no grafo",
@@ -131,24 +134,45 @@ public class ProjetoLMD implements ViewerListener {
 			node.setAttribute("ui.class", "");
 		}
 	}
+
+	public void randomGraph(int averageDegree, int amountOfNodes) {
+		Generator gen = new RandomGenerator(averageDegree);
+		gen.addSink(graph);
+		gen.begin();
+		for(int i=0; i<amountOfNodes; i++)
+			gen.nextEvents();
+		gen.end();
+	}
 	
 	public void preBuiltGraph() {
-		graph.addEdge("12", "1", "2");
-		graph.addEdge("14", "1", "4");
+		graph.addEdge("12", "A", "B");
+		//graph.addEdge("14", "A", "D");
 
-		graph.addEdge("23", "2", "3");
-		graph.addEdge("25", "2", "5");
+		graph.addEdge("23", "B", "C");
+		graph.addEdge("25", "B", "E");
 
-		graph.addEdge("34", "3", "4");
-		graph.addEdge("36", "3", "6");
+		//graph.addEdge("34", "C", "D");
+		//graph.addEdge("36", "C", "F");
 
-		graph.addEdge("47", "4", "7");
+		graph.addEdge("47", "D", "G");
 
-		graph.addEdge("58", "5", "8");
+		graph.addEdge("58", "E", "H");
 
-		graph.addEdge("68", "6", "8");
-		graph.addEdge("69", "6", "9");
+		//graph.addEdge("68", "F", "H");
+		graph.addEdge("69", "F", "I");
+		graph.addEdge("37", "H", "J");
+		graph.addEdge("20", "J", "A");
+		graph.addEdge("19", "B", "J");
+		graph.addEdge("15", "A", "I");
+		graph.addEdge("13", "E", "J");
+		graph.addEdge("60", "K", "L");
+		graph.addEdge("14", "K", "C");
+		graph.addEdge("35", "B", "X");
+		graph.addEdge("40", "L", "D");
+		//graph.addEdge("79", "G", "I");
 		
-		graph.addEdge("79", "7", "9");
 	}
 }
+//mvn install  	
+//mvn exec:java -Dexec.mainClass="com.ufu.ProjetoLMD.ProjetoLMD" 
+
