@@ -35,3 +35,5 @@ $ mvn install
 $ mvn exec:java -Dexec.mainClass="com.ufu.ProjetoLMD.ProjetoLMD"
 ```
 Ou execute o arquivo ``grafo.jar`` disponivel.
+
+![alt text](https://github.com/PedruuH/ProjetoLMD/blob/main/image.PNG?raw=true)
