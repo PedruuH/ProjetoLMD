@@ -7,7 +7,7 @@ Java Runtime Environment, Java SE Development Kit e Maven.
 
 ### Instalação
 
-  #Windows:
+  # Windows:
     Caso esteja no Windows siga estas instruçõs https://dicasdejava.com.br/como-instalar-o-maven-no-windows/.
     
   # Linux:
